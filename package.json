@@ -1,14 +1,19 @@
 {
-    "name": "squircle",
-    "version": "0.1.0",
-    "description": "Microlibrary for creating smooth corners from any div with background",
-    "main": "index.js",
+    "name": "squirclify",
+    "version": "0.1.2",
+    "description": "Microlibrary for creating smooth corners from any div, based on border radius size",
+    "main": "src/index.js",
     "scripts": {},
     "keywords": [
         "squircle",
         "superellipse",
         "clip-mask"
     ],
-    "author": "xeviltimx",
-    "license": "ISC"
+    "author": "tim-mukhin",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tim-mukhin/squirclify"
+    },
+    "homepage": "https://github.com/tim-mukhin/squirclify#readme",
+    "license": "GPLv3"
 }
