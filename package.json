@@ -1,6 +1,6 @@
 {
     "name": "squirclify",
-    "version": "0.1.2",
+    "version": "1.0.0",
     "description": "Microlibrary for creating smooth corners from any div, based on border radius size",
     "main": "src/index.js",
     "scripts": {},
