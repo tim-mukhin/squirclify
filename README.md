@@ -5,14 +5,16 @@
 
 ## What is it
 
-`Squirclify.js` - microlibrary for creating smooth corners from any div, based on its border radius size.
-It uses svg clip-path.
+`Squirclify.js` - microlibrary for creating smooth corners from any div, based on its border-radius size.
 
-It imitates 100% smoothing corners at Figma with besier curves.
+It imitates 100% smoothing corners at Figma:
 
-![logo](images/corner_smoothing.jpg)
+![corner smoothing](images/corner_smoothing.jpg)
 
-[Codesandbox example](https://codesandbox.io/s/squirclify-example-lcrjc?file=/src/index.js)
+### [CodeSandbox example](https://codesandbox.io/s/squirclify-example-lcrjc?file=/src/index.js)
+
+## Result
+![corner smoothing](images/comparison.png)
 
 ## How to use
 
@@ -43,9 +45,10 @@ import { Squircle } from "squirclify";
 ```
 
 ## Known restrictions
-
--   There is a bug in Safari on Mac OS due to which the clip-mask is applied without considering paddings and margins, therefore it is necessary to wrap squirclified content with another `<div>` to which you need to apply margins/paddings.
 -   It only imitates 100% corner smoothing.
+- Squircle will not recalculate when the viewport width changes by default. This is done on purpose, assuming that in most cases users do not resize the viewport. But you can add your own handler on viewport width changing.
+-   There is a bug in Safari on Mac OS due to which the clip-mask is applied without considering paddings and margins, therefore it is necessary to wrap squirclified content with another `<div>` to which you need to apply margins/paddings.
+
 
 
 ## Known issues
