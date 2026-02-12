@@ -13,25 +13,24 @@ const createMaskContainer = () => {
 };
 
 const createMask = (width, height, radius) => {
-    const maskId = `squircle-mask-${width}-${height}-${radius}`;
+    const m = 0.25;
+    const mr = 0.35;
+    const safeRadius = Math.min(
+        Math.max(radius, 0),
+        Math.min(width, height) / (2 * (1 + mr))
+    );
+    const roundedSafeRadius = Math.round(safeRadius * 1000) / 1000;
+    const maskId = `squircle-mask-${width}-${height}-${roundedSafeRadius}`;
     const el = document.getElementById(maskId);
 
     if (el) {
         return maskId;
     }
-    const m = 0.25;
-    const mr = 0.35;
-    const largestSide = width > height ? width : height;
-    const indent =
-        radius * (1 + mr) < largestSide * 2
-            ? radius * (1 + mr)
-            : largestSide * 2;
 
-    const indentW = indent / width;
-    const indentH = indent / height;
+    const indent = safeRadius * (1 + mr);
+    const indentW = Math.min(indent / width, 0.5);
+    const indentH = Math.min(indent / height, 0.5);
 
-    console.log("W", width, indentW);
-    console.log("H", height, indentH);
     const tmpl = `<clipPath  id=${maskId}  clipPathUnits="objectBoundingBox"><path fill="#000" stroke="#ccc" d="
     M ${indentW},0
     L ${1 - indentW},0
@@ -55,9 +54,12 @@ export const squirclify = (el) => {
         window.getComputedStyle(el).getPropertyValue("border-radius"),
         10
     );
+    const radius = Number.isFinite(r) && r > 0 ? r : 0;
 
     const { clientWidth: w, clientHeight: h } = el;
-    const maskId = createMask(w, h, r);
+    if (!w || !h) return;
+
+    const maskId = createMask(w, h, radius);
     el.style.clipPath = `url(#${maskId})`;
     el.style.WebkitClipPath = `url(#${maskId})`;
 };

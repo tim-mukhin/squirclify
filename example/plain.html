@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Squirclify plain HTML</title>
+    <style>
+        :root {
+            --bg: #f3f5f9;
+            --text: #1d2430;
+            --muted: #5e6b7f;
+            --blue: #3c5d88;
+            --blue-soft: #4a6d9c;
+            --red: #e14b4b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .stage {
+            max-width: 1360px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin: 0 0 6px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            margin: 0 0 14px;
+            color: var(--muted);
+        }
+
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            color: #354257;
+        }
+
+        .row {
+            margin: 0 0 16px;
+        }
+
+        .row-title {
+            margin: 0 0 8px;
+            font-size: 13px;
+            color: #4f5d73;
+            font-weight: 700;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            width: var(--w, 320px);
+            height: var(--h, 180px);
+            flex: 0 0 auto;
+        }
+
+        .content {
+            padding: 12px 14px;
+        }
+
+        .label {
+            margin: 0 0 4px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .text {
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.35;
+            opacity: 0.95;
+        }
+
+        .blue {
+            background: linear-gradient(140deg, var(--blue-soft), var(--blue));
+        }
+
+        .compare {
+            background: transparent;
+        }
+
+        .compare-base,
+        .compare-top {
+            position: absolute;
+            inset: 0;
+        }
+
+        .compare-base {
+            background: var(--red);
+        }
+
+        .compare-top {
+            background: #fff;
+            color: #1f2531;
+            border-radius: var(--radius, 20px);
+        }
+
+        .compare-top .text {
+            color: #374255;
+            opacity: 1;
+        }
+
+        .h-96 {
+            --h: 96px;
+        }
+
+        .h-110 {
+            --h: 110px;
+        }
+
+        .h-128 {
+            --h: 128px;
+        }
+
+        .h-160 {
+            --h: 160px;
+        }
+
+        .h-180 {
+            --h: 180px;
+        }
+
+        .h-220 {
+            --h: 220px;
+        }
+
+        .h-340 {
+            --h: 340px;
+        }
+
+        .w-220 {
+            --w: 220px;
+        }
+
+        .w-260 {
+            --w: 260px;
+        }
+
+        .w-320 {
+            --w: 320px;
+        }
+
+        .w-420 {
+            --w: 420px;
+        }
+
+        .w-520 {
+            --w: 520px;
+        }
+
+        .r-18 {
+            border-radius: 18px;
+            --radius: 18px;
+        }
+
+        .r-20 {
+            border-radius: 20px;
+            --radius: 20px;
+        }
+
+        .r-22 {
+            border-radius: 22px;
+            --radius: 22px;
+        }
+
+        .r-32 {
+            border-radius: 32px;
+            --radius: 32px;
+        }
+
+        .r-40 {
+            border-radius: 40px;
+            --radius: 40px;
+        }
+
+        .r-52 {
+            border-radius: 52px;
+            --radius: 52px;
+        }
+
+        .r-26 {
+            border-radius: 26px;
+            --radius: 26px;
+        }
+
+        @media (max-width: 980px) {
+            .legend {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                width: min(100%, var(--w, 320px));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stage">
+        <h1>Squirclify visual comparison</h1>
+        <p class="subtitle">Product-like fixed sizes. Column 1 overlays white standard radius on top of red squircle so corner differences are easy to spot.</p>
+
+        <div class="legend">
+            <div>1) Difference overlay</div>
+            <div>2) Squircle</div>
+            <div>3) Standard border-radius</div>
+        </div>
+
+        <section class="row">
+            <p class="row-title">Case A - Catalog card (320x180, radius=20)</p>
+            <div class="grid">
+                <article class="card compare w-320 h-180 r-20">
+                    <div class="compare-base" data-squirclify></div>
+                    <div class="compare-top">
+                        <div class="content">
+                            <p class="label">Overlay view</p>
+                            <p class="text">White = standard radius, red edge = squircle delta.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="card blue w-320 h-180 r-20" data-squirclify>
+                    <div class="content">
+                        <p class="label">Squircle</p>
+                        <p class="text">Card with title, subtitle and short metadata.</p>
+                    </div>
+                </article>
+                <article class="card blue w-320 h-180 r-20">
+                    <div class="content">
+                        <p class="label">Standard radius</p>
+                        <p class="text">Same dimensions and content for direct comparison.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="row">
+            <p class="row-title">Case B - Square tile (220x220, radius=40)</p>
+            <div class="grid">
+                <article class="card compare w-220 h-220 r-40">
+                    <div class="compare-base" data-squirclify></div>
+                    <div class="compare-top">
+                        <div class="content">
+                            <p class="label">Overlay view</p>
+                            <p class="text">Square dashboard tile with larger radius.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="card blue w-220 h-220 r-40" data-squirclify>
+                    <div class="content">
+                        <p class="label">Squircle</p>
+                        <p class="text">Daily sales, conversion and trend snapshot.</p>
+                    </div>
+                </article>
+                <article class="card blue w-220 h-220 r-40">
+                    <div class="content">
+                        <p class="label">Standard radius</p>
+                        <p class="text">Baseline for the same square geometry.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="row">
+            <p class="row-title">Case C - Wide banner (520x160, radius=32)</p>
+            <div class="grid">
+                <article class="card compare w-520 h-160 r-32">
+                    <div class="compare-base" data-squirclify></div>
+                    <div class="compare-top">
+                        <div class="content">
+                            <p class="label">Overlay view</p>
+                            <p class="text">Horizontal banner in feed or checkout screen.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="card blue w-520 h-160 r-32" data-squirclify>
+                    <div class="content">
+                        <p class="label">Squircle</p>
+                        <p class="text">Free shipping over $50 this weekend only.</p>
+                    </div>
+                </article>
+                <article class="card blue w-520 h-160 r-32">
+                    <div class="content">
+                        <p class="label">Standard radius</p>
+                        <p class="text">Regular CSS rounded corners for comparison.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="row">
+            <p class="row-title">Case D - Tall info panel (260x340, radius=22)</p>
+            <div class="grid">
+                <article class="card compare w-260 h-340 r-22">
+                    <div class="compare-base" data-squirclify></div>
+                    <div class="compare-top">
+                        <div class="content">
+                            <p class="label">Overlay view</p>
+                            <p class="text">Vertical panel used in sidebars and settings pages.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="card blue w-260 h-340 r-22" data-squirclify>
+                    <div class="content">
+                        <p class="label">Squircle</p>
+                        <p class="text">Profile summary, account limits and plan details.</p>
+                    </div>
+                </article>
+                <article class="card blue w-260 h-340 r-22">
+                    <div class="content">
+                        <p class="label">Standard radius</p>
+                        <p class="text">Same panel dimensions, standard corner behavior.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="row">
+            <p class="row-title">Case E - Hero module (420x220, radius=52)</p>
+            <div class="grid">
+                <article class="card compare w-420 h-220 r-52">
+                    <div class="compare-base" data-squirclify></div>
+                    <div class="compare-top">
+                        <div class="content">
+                            <p class="label">Overlay view</p>
+                            <p class="text">Large radius stress in a common hero-card proportion.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="card blue w-420 h-220 r-52" data-squirclify>
+                    <div class="content">
+                        <p class="label">Squircle</p>
+                        <p class="text">Featured collection, CTA and short description.</p>
+                    </div>
+                </article>
+                <article class="card blue w-420 h-220 r-52">
+                    <div class="content">
+                        <p class="label">Standard radius</p>
+                        <p class="text">Reference implementation with plain border-radius.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        (function () {
+            var maskContainerId = "squircle-masks-container";
+
+            function createMaskContainer() {
+                var el = document.getElementById(maskContainerId);
+                if (el) {
+                    return el;
+                }
+
+                var tmpl = '<svg height="0" width="0" xmlns="http://www.w3.org/2000/svg"><defs id="' + maskContainerId + '"></defs></svg>';
+                document.body.insertAdjacentHTML("beforeend", tmpl);
+                return document.getElementById(maskContainerId);
+            }
+
+            function createMask(width, height, radius) {
+                var m = 0.25;
+                var mr = 0.35;
+                var safeRadius = Math.min(
+                    Math.max(radius, 0),
+                    Math.min(width, height) / (2 * (1 + mr))
+                );
+                var roundedSafeRadius = Math.round(safeRadius * 1000) / 1000;
+                var maskId = "squircle-mask-" + width + "-" + height + "-" + roundedSafeRadius;
+                var existing = document.getElementById(maskId);
+
+                if (existing) {
+                    return maskId;
+                }
+
+                var indent = safeRadius * (1 + mr);
+                var indentW = Math.min(indent / width, 0.5);
+                var indentH = Math.min(indent / height, 0.5);
+
+                var tmpl = '<clipPath id="' + maskId + '" clipPathUnits="objectBoundingBox"><path fill="#000" stroke="#ccc" d="' +
+                    'M ' + indentW + ',0 ' +
+                    'L ' + (1 - indentW) + ',0 ' +
+                    'C ' + (1 - indentW * m) + ',0 1,' + (indentH * m) + ' 1,' + indentH + ' ' +
+                    'L 1,' + (1 - indentH) + ' ' +
+                    'C 1,' + (1 - indentH * m) + ' ' + (1 - indentW * m) + ',1 ' + (1 - indentW) + ',1 ' +
+                    'L ' + indentW + ',1 ' +
+                    'C ' + (indentW * m) + ',1 0,' + (1 - indentH * m) + ' 0,' + (1 - indentH) + ' ' +
+                    'L 0,' + indentH + ' ' +
+                    'C 0,' + (indentH * m) + ' ' + (indentW * m) + ',0 ' + indentW + ',0"/></clipPath>';
+
+                createMaskContainer().insertAdjacentHTML("beforeend", tmpl);
+                return maskId;
+            }
+
+            function squirclify(el) {
+                if (!el) {
+                    return;
+                }
+
+                var r = parseInt(window.getComputedStyle(el).getPropertyValue("border-radius"), 10);
+                var radius = Number.isFinite(r) && r > 0 ? r : 0;
+                var w = el.clientWidth;
+                var h = el.clientHeight;
+
+                if (!w || !h) {
+                    return;
+                }
+
+                var maskId = createMask(w, h, radius);
+                el.style.clipPath = "url(#" + maskId + ")";
+                el.style.WebkitClipPath = "url(#" + maskId + ")";
+            }
+
+            Array.prototype.forEach.call(
+                document.querySelectorAll("[data-squirclify]"),
+                function (el) {
+                    squirclify(el);
+                }
+            );
+        })();
+    </script>
+</body>
+</html>

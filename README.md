@@ -13,6 +13,10 @@ It imitates 100% smoothing corners at Figma:
 
 ### [CodeSandbox example](https://codesandbox.io/s/squirclify-example-lcrjc?file=/src/index.js)
 
+### Plain HTML example
+
+Open `example/plain.html` directly in your browser to compare Squircle and standard CSS `border-radius` without React.
+
 ## Result
 ![corner smoothing](images/comparison.png)
 
@@ -48,8 +52,9 @@ import { Squircle } from "squirclify";
 -   It only imitates 100% corner smoothing.
 - Squircle will not recalculate when the viewport width changes by default. This is done on purpose, assuming that in most cases users do not resize the viewport. But you can add your own handler on viewport width changing.
 -   There is a bug in Safari on Mac OS due to which the clip-mask is applied without considering paddings and margins, therefore it is necessary to wrap squirclified content with another `<div>` to which you need to apply margins/paddings.
+-   If `border-radius` is too large for element size, Squirclify automatically clamps the effective squircle radius to avoid corner overlap.
 
 
 
 ## Known issues
-- Squircle radius can became greater than border radius
+- Safari clip-mask bug with paddings and margins (see Known restrictions above).
